@@ -15,14 +15,14 @@ function startRender() {
   const delay = delayInputElement.value;
   let renderType = null;
 
-    for(let i = 0; i < renderTypeRadioElements.length; i++){
-      const radioButton = renderTypeRadioElements[i]
-       if(radioButton.checked === true){
-         renderType = radioButton.value
-       }
+  for (let i = 0; i < renderTypeRadioElements.length; i++) {
+    const radioButton = renderTypeRadioElements[i]
+    if (radioButton.checked === true) {
+      renderType = radioButton.value
     }
-    renderByType(renderType, text, delay)
-  };
+  }
+  renderByType(renderType, text, delay)
+};
 
 
 /**
@@ -111,17 +111,12 @@ function runForLoop(text, delay) {
 function runPromises(text, delay){
   // code goes here
   console.log('runPromises is called', text, delay);
-  
-  const funToRun = function(){
   return new Promise(function(resolve, reject){
-        setTimeout(addParagraph, delay, text)
-        resolve();
-  })}
-
-  funToRun()
-  .then(setTimeout(addParagraph, delay*2, text))
-  .then(setTimeout(addParagraph, delay*3, text))
-  .then(setTimeout(addParagraph, delay*4, text))
+    setTimeout(resolve(addParagraph(text)), delay)
+  })
+  .then(Promise.resolve())
+  .then(Promise.resolve())
+  .then(Promise.resolve())
 }
 
 // NOTE: You can also start with the addParagraph function implementation followed by runCallBacks, runForLoop and runPromises
